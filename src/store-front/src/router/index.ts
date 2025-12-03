@@ -10,7 +10,7 @@ const router = createRouter({
     { path: '/', component: ProductListView },
     { path: '/product/:id', component: ProductDetailView, props: true },
     { path: '/cart', component: ShoppingCartView },
-    { path: '/error', component: ErrorView },
+    { path: '/getnewrabbitmqconnection', component: ErrorView },
   ],
 })
 

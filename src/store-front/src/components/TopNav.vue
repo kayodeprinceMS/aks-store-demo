@@ -49,7 +49,7 @@ const triggerOrderServiceError = async () => {
     console.error('Failed to trigger order service error:', error)
   }
   // Navigate to error page
-  router.push({ path: '/error', query: { message: 'Exception thrown in order service!' } })
+  router.push({ path: '/getnewrabbitmqconnection', query: { message: 'Exception thrown in order service!' } })
 }
 </script>
 
