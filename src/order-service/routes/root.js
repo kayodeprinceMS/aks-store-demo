@@ -12,6 +12,10 @@ module.exports = async function (fastify, opts) {
     return { status: 'ok', version: appVersion }
   })
 
+  fastify.get('/throw-error', async function (request, reply) {
+    throw new Error('Test exception from order-service!')
+  })
+
   fastify.get('/hugs', async function (request, reply) {
     return { hugs: fastify.someSupport() }
   })

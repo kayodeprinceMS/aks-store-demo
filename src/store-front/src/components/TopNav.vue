@@ -13,14 +13,19 @@
       <li>
         <router-link to="/cart" @click="closeNav">Cart ({{ cartItemCount }})</router-link>
       </li>
+      <li>
+        <button class="throw-error-btn" @click="triggerOrderServiceError">Throw Error</button>
+      </li>
     </ul>
   </nav>
 </template>
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { useCartStore } from '@/stores'
 
+const router = useRouter()
 const cartStore = useCartStore()
 const isNavOpen = ref(false)
 
@@ -32,6 +37,19 @@ const toggleNav = () => {
 
 const closeNav = () => {
   isNavOpen.value = false
+}
+
+const triggerOrderServiceError = async () => {
+  try {
+    const response = await fetch('/api/order/throw-error')
+    if (!response.ok) {
+      console.error('Order service error triggered:', response.status)
+    }
+  } catch (error) {
+    console.error('Failed to trigger order service error:', error)
+  }
+  // Navigate to error page
+  router.push({ path: '/error', query: { message: 'Exception thrown in order service!' } })
 }
 </script>
 
@@ -101,6 +119,22 @@ nav img {
 
 .hamburger-icon::after {
   bottom: -6px;
+}
+
+.throw-error-btn {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.throw-error-btn:hover {
+  background-color: #c82333;
 }
 
 @media (max-width: 768px) {
