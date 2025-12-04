@@ -41,7 +41,7 @@ const closeNav = () => {
 
 const triggerOrderServiceError = async () => {
   try {
-    const response = await fetch('/api/order/throw-error')
+    const response = await fetch('/api/order/NewRabbitMQConnection')
     if (!response.ok) {
       console.error('Order service error triggered:', response.status)
     }

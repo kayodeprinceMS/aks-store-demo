@@ -21,7 +21,10 @@ const router = useRouter()
 const route = useRoute()
 const errorMessage = ref('An error was thrown in the order service')
 
-onMounted(() => {
+onMounted(async () => {
+  // Add 1 second delay before loading the page content
+  await new Promise(resolve => setTimeout(resolve, 1000))
+  
   if (route.query.message) {
     errorMessage.value = route.query.message as string
   }

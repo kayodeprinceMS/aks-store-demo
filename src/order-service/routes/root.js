@@ -12,7 +12,12 @@ module.exports = async function (fastify, opts) {
     return { status: 'ok', version: appVersion }
   })
 
-  fastify.get('/throw-error', async function (request, reply) {
+  fastify.get('/NewRabbitMQConnection', async function (request, reply) {
+    // Add 1 second delay before throwing the error
+    await new Promise(resolve => setTimeout(resolve, 1000))
+    
+    console.error('RabbitMQ Connection Failure: Simulated exception triggered!')
+    console.error('Stack trace will follow from thrown error')
     throw new Error('Test exception from order-service!')
   })
 
