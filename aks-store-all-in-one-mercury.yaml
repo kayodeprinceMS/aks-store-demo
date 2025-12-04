@@ -194,6 +194,7 @@ spec:
       containers:
         - name: order-service
           image: mercurypetstoreacr.azurecr.io/aks-store-demo/order-service:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 3000
           envFrom:
@@ -410,6 +411,7 @@ spec:
       containers:
         - name: store-front
           image: mercurypetstoreacr.azurecr.io/aks-store-demo/store-front:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
               name: store-front
